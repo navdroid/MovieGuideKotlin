@@ -1,0 +1,119 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-android-extensions'
+
+
+def getProperty(String filename, String propName) {
+    def propsFile = rootProject.file(filename)
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        if (props[propName] != null) {
+            return props[propName]
+        } else {
+            print("No such property " + propName + " in file " + filename);
+        }
+    } else {
+        print(filename + " does not exist!")
+    }
+}
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.droid.nav.movieguidekotlin"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
+        buildConfigField "String", "TMDB_BASE_URL", "\"http://api.themoviedb.org/\""
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true;
+    }
+    androidExtensions {
+        experimental = true
+    }
+}
+ext {
+    supportLibVersion = '27.1.1'
+    okhttpVersion = '3.9.0'
+    arch = "1.1.1"
+    dagger_version = "2.11"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    kapt 'com.android.databinding:compiler:3.0.1'
+
+    //Support
+    implementation "com.android.support:design:${supportLibVersion}"
+    implementation "com.android.support:support-v4:${supportLibVersion}"
+    implementation "com.android.support:support-annotations:${supportLibVersion}"
+    implementation "com.android.support:palette-v7:${supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
+
+    // Rx
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    // Network
+    implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}"
+    implementation 'com.github.bumptech.glide:glide:4.4.0'
+
+    // Other
+    implementation 'net.jcip:jcip-annotations:1.0'
+    implementation 'com.squareup.moshi:moshi:1.4.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+
+    // Retrofit 2
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    compile "android.arch.lifecycle:runtime:${arch}"
+    compile "android.arch.lifecycle:extensions:${arch}"
+    annotationProcessor "android.arch.lifecycle:compiler:${arch}"
+
+    compile "com.google.dagger:dagger:${dagger_version}"
+    compile "com.google.dagger:dagger-android:${dagger_version}"
+    compile "com.google.dagger:dagger-android-support:${dagger_version}"
+
+    kapt "com.google.dagger:dagger-compiler:${dagger_version}"
+    kapt "com.google.dagger:dagger-android-processor:${dagger_version}"
+
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Tests
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.9.0'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.0') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+}

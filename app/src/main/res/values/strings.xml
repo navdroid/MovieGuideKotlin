@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MovieGuideMvvm</string>
+    <string name="movie_guide">Movie Guide MVVM</string>
+    <string name="summary">Summary</string>
+    <string name="most_popular">Most Popular</string>
+    <string name="highest_rated">Highest Rated</string>
+    <string name="favorites">Favorites</string>
+    <string name="newest">Newest</string>
+    <string name="trailers">Trailers</string>
+    <string name="reviews">Reviews</string>
+    <string name="action_filter">Sort</string>
+</resources>
