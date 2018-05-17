@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Copyright © 2017 Appster LLP. All rights reserved.
+ *
  * Created by navdeepbedi on 15/05/18.
  */
 

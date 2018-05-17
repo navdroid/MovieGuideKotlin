@@ -1,8 +1,10 @@
 package com.droid.nav.movieguidekotlin.view
 
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.graphics.Bitmap
+import android.os.Bundle
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -17,6 +19,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import com.droid.nav.movieguidekotlin.R
 import com.droid.nav.movieguidekotlin.databinding.MovieGridItemBinding
+import com.droid.nav.movieguidekotlin.model.Constants
 import com.droid.nav.movieguidekotlin.model.Movie
 import com.droid.nav.movieguidekotlin.network.Api
 
@@ -55,6 +58,13 @@ class MoviesListingAdapter : RecyclerView.Adapter<MoviesListingAdapter.ViewHolde
         var movie: Movie? = null
 
         override fun onClick(view: View) {
+
+
+            val intent = Intent(context, MovieDetailActivity::class.java)
+            val extras = Bundle()
+            extras.putParcelable(Constants.MOVIE, movie)
+            intent.putExtras(extras)
+            context?.startActivity(intent)
 
         }
     }

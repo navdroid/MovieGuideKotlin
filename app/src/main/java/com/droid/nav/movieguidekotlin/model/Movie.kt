@@ -5,13 +5,13 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class Movie() : Parcelable {
-    var id: String? = null
-    var overview: String? = null
-    var release_date: String? = null
-    var poster_path: String? = null
-    var backdrop_path: String? = null
-    var title: String? = null
-    var vote_average: Double = 0.toDouble()
+class Movie(
+        val id: String?,
+        val overview: String?,
+        val release_date: String?,
+        val poster_path: String?,
+        val backdrop_path: String?,
+        val title: String?,
+        val vote_average: Double?) : Parcelable
 
-}
+

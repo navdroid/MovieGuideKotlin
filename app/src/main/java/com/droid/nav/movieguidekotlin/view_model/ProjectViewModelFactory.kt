@@ -21,6 +21,7 @@ constructor(viewModelSubComponent: ViewModelSubComponent) : ViewModelProvider.Fa
 
         // View models cannot be injected directly because they won't be bound to the owner's view model scope.
         creators.put(MovieViewModel::class.java, Callable<ViewModel> { viewModelSubComponent.movieViewModel() })
+        creators.put(MovieDetailViewModel::class.java, Callable<ViewModel> { viewModelSubComponent.movieDetailViewModel() })
         //        creators.put(ProjectListViewModel.class, () -> viewModelSubComponent.projectListViewModel());
     }
 

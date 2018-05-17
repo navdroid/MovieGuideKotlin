@@ -1,5 +1,6 @@
 package com.droid.nav.movieguidekotlin.di
 
+import com.droid.nav.movieguidekotlin.view_model.MovieDetailViewModel
 import com.droid.nav.movieguidekotlin.view_model.MovieViewModel
 import dagger.Subcomponent
 
@@ -11,4 +12,5 @@ interface ViewModelSubComponent {
     }
 
     fun movieViewModel(): MovieViewModel
+    fun movieDetailViewModel(): MovieDetailViewModel
 }

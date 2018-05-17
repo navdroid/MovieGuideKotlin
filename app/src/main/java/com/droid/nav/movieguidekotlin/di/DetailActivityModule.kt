@@ -7,13 +7,13 @@ import dagger.android.ContributesAndroidInjector
 
 /**
  *
- * Created by navdeepbedi on 15/05/18.
+ * Created by navdeepbedi on 16/05/18.
  */
 @Module
-abstract class MainActivityModule {
+abstract class DetailActivityModule {
 
-    @ContributesAndroidInjector(modules = arrayOf(FragmentBuildersModule::class))
-    abstract fun contributeMainActivity(): MoviesListingActivity
+    @ContributesAndroidInjector(modules = arrayOf(DetailFragmentBuildersModule::class))
+    abstract fun contributeMainActivity(): MovieDetailActivity
 
 
 }

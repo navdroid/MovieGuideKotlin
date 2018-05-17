@@ -35,4 +35,5 @@ constructor(application: BaseApplication, movieRepository: MovieRepository) : An
         movieWraperLiveData = movieRepository!!.fetchMovies(page)
 
     }
+
 }
